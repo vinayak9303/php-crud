@@ -50,13 +50,13 @@ function get_all_data($conn){
             <h2>Insert Data</h2>
             <form action="insert.php" method="post">
                 <strong>NAME</strong><br>
-                <input type="text" name="name" placeholder="Enter your full name" required><br>
+                <input type="text" name="NAME" placeholder="Enter your full name" required><br>
                 <strong>Email</strong><br>
-                <input type="email" name="email" placeholder="Enter your email" required><br>
-                <strong>Username</strong><br>
-                <input type="text" name="username" placeholder="Enter your user name" required><br>
+                <input type="email" name="EMAIL" placeholder="Enter your email" required><br>
+                <strong>USERNAME</strong><br>
+                <input type="text" name="USERNAME" placeholder="Enter your user name" required><br>
                 <strong>PASSWORD</strong><br>
-                <input type="text" name="password" placeholder="Enter your password" required><br>
+                <input type="text" name="PASSWORD" placeholder="Enter your password" required><br>
                 <input type="submit" value="Insert">
             </form>
         </div>
