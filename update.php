@@ -62,20 +62,21 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
 
 // UPDATING DATA
 
-if(isset($_POST['username']) && isset($_POST['email'])){
+if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) && isset($_POST['PASSWORD'])){
     
     // check username and email empty or not
-    if(!empty($_POST['username']) && !empty($_POST['email'])){
+    if(!empty($_POST['NAME']) && !empty($_POST['EMAIL']) && !empty($_POST['USERNAME']) && !empty($_POST['PASSWORD'])){
         
         // Escape special characters.
-        $username = mysqli_real_escape_string($conn, htmlspecialchars($_POST['username']));
-        $user_email = mysqli_real_escape_string($conn, htmlspecialchars($_POST['email']));
-        
+        $NAME = mysqli_real_escape_string($conn, htmlspecialchars($_POST['NAME']));
+        $EMAIL = mysqli_real_escape_string($conn, htmlspecialchars($_POST['EMAIL']));
+        $USERNAME = mysqli_real_escape_string($conn, htmlspecialchars($_POST['USERNAME']));
+        $PASSWORD = mysqli_real_escape_string($conn, htmlspecialchars($_POST['PASSWORD']));
         //CHECK EMAIL IS VALID OR NOT
-        if (filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
+        if (filter_var($EMAIL, FILTER_VALIDATE_EMAIL)) {
             $user_id = $_GET['id'];
             // CHECK IF EMAIL IS ALREADY INSERTED OR NOT
-            $check_email = mysqli_query($conn, "SELECT `user_email` FROM `users` WHERE user_email = '$user_email' AND id != '$user_id'");
+            $check_email = mysqli_query($conn, "SELECT `EMAIL` FROM `users` WHERE EMAIL = '$EMAIL' AND id != '$user_id'");
             
             if(mysqli_num_rows($check_email) > 0){    
                 
@@ -83,7 +84,7 @@ if(isset($_POST['username']) && isset($_POST['email'])){
             }else{
                 
                 // UPDATE USER DATA               
-                $update_query = mysqli_query($conn,"UPDATE `users` SET username='$username',user_email='$user_email' WHERE id=$user_id");
+                $update_query = mysqli_query($conn,"UPDATE `users` SET NAME='$NAME',EMAIL='$EMAIL',USERNAME='$USERNAME',PASSWORD='$PASSWORD' WHERE id=$user_id");
 
                 //CHECK DATA UPDATED OR NOT
                 if($update_query){
