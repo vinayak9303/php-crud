@@ -1,3 +1,36 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+      
+       <!-- INSERT DATA -->
+        <div class="form">
+            <h2>Insert Data</h2>
+            <form action="insert.php" method="post">
+                <strong>NAME</strong><br>
+                <input type="text" name="NAME" placeholder="Enter your full name" required><br>
+                <strong>Email</strong><br>
+                <input type="email" name="EMAIL" placeholder="Enter your email" required><br>
+                <strong>USERNAME</strong><br>
+                <input type="text" name="USERNAME" placeholder="Enter your user name" required><br>
+                <strong>PASSWORD</strong><br>
+                <input type="text" name="PASSWORD" placeholder="Enter your password" required><br>
+                <input type="submit" value="Insert">
+            </form>
+        </div>
+        <!-- END OF INSERT DATA SECTION -->
+    </body>
+</html>
+   
 <?php
 require 'db_connection.php';
 
@@ -52,7 +85,7 @@ if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) 
     
 }else{
     // set header response code
-    http_response_code(404);
-    echo "<h1>404 Page Not Found!</h1>";
+    //http_response_code(404);
+    //echo "<h1>404 Page Not Found!</h1>";
 }
 ?>

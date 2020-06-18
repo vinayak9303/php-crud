@@ -36,7 +36,7 @@ function get_all_data($conn){
 <html lang="">
 
 <head>
-<script src"https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Application</title>
@@ -44,24 +44,7 @@ function get_all_data($conn){
 </head>
 
 <body>
-    <div class="container">
-      
-       <!-- INSERT DATA -->
-        <div class="form">
-            <h2>Insert Data</h2>
-            <form action="insert.php" method="post">
-                <strong>NAME</strong><br>
-                <input type="text" name="NAME" placeholder="Enter your full name" required><br>
-                <strong>Email</strong><br>
-                <input type="email" name="EMAIL" placeholder="Enter your email" required><br>
-                <strong>USERNAME</strong><br>
-                <input type="text" name="USERNAME" placeholder="Enter your user name" required><br>
-                <strong>PASSWORD</strong><br>
-                <input type="text" name="PASSWORD" placeholder="Enter your password" required><br>
-                <input type="submit" value="Insert">
-            </form>
-        </div>
-        <!-- END OF INSERT DATA SECTION -->
+    
         <hr>
         <!-- SHOW DATA -->
         <h2>Show Data</h2>
@@ -69,8 +52,10 @@ function get_all_data($conn){
         // calling get_all_data function
         get_all_data($conn); 
         ?>
-        <!-- END OF SHOW DATA SECTION -->
-    </div>
+        <!-- END OF SHOW DATA SECTIONo -->
+        <form action="insert.php" method="get">
+    <button type="submit" >REGISTER</button>
+    </form>
 </body>
 
 </html>
