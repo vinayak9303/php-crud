@@ -9,7 +9,6 @@ function get_all_data($conn){
                 <th>NAME</th>
                 <th>EMAIL</th>
                 <th>USERNAME</th>
-                <th>PASSWORD</th> 
                 <th>Action</th> 
               </tr>';
         while($row = mysqli_fetch_assoc($get_data)){
@@ -18,7 +17,6 @@ function get_all_data($conn){
             <td>'.$row['NAME'].'</td>
             <td>'.$row['EMAIL'].'</td>
             <td>'.$row['USERNAME'].'</td>
-            <td>'.$row['PASSWORD'].'</td>
             <td>
             <a href="update.php?id='.$row['id'].'">Edit</a> |
             <a href="delete.php?id='.$row['id'].'">Delete</a>
