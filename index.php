@@ -56,6 +56,9 @@ function get_all_data($conn){
         <form action="insert.php" method="get">
     <button type="submit" >REGISTER</button>
     </form>
+        <form action="login.php" method="get">
+    <button type="submit" >LOGIN</button>
+    </form>
 </body>
 
 </html>

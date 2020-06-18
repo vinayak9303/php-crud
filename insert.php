@@ -23,7 +23,7 @@
                 <strong>USERNAME</strong><br>
                 <input type="text" name="USERNAME" placeholder="Enter your user name" required><br>
                 <strong>PASSWORD</strong><br>
-                <input type="text" name="PASSWORD" placeholder="Enter your password" required><br>
+                <input type="password" name="PASSWORD" placeholder="Enter your password" required><br>
                 <input type="submit" value="Insert">
             </form>
         </div>
