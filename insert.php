@@ -44,7 +44,7 @@
             processData:false,
             data:  new FormData(this),
             success: function(obj) {
-                console.log(obj)
+                console.log("Response: " + obj)
                 swal("Success", "Successfully Inserted", "success");
             },
             error: function(obj){
