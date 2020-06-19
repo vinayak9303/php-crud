@@ -2,6 +2,7 @@
 <html lang="">
 
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
        <!-- INSERT DATA -->
         <div class="form">
             <h2>Insert Data</h2>
-            <form action="insert.php" method="post">
+            <form>
                 <strong>NAME</strong><br>
                 <input type="text" name="NAME" placeholder="Enter your full name" required><br>
                 <strong>Email</strong><br>
@@ -28,64 +29,30 @@
             </form>
         </div>
         <!-- END OF INSERT DATA SECTION -->
+
+
+
+
+<script>
+    $('form').on('submit', function(e) {
+        e.preventDefault()
+        $.ajax({
+            url: 'store.php',
+            type: 'POST',
+            data:  new FormData(this),
+            success: function(obj) {
+                alert('success')
+            },
+            error: function(obj){
+                alert('error')
+            }
+        });
+    });
+</script>
+
+
+
+
     </body>
 </html>
    
-<?php
-require 'db_connection.php';
-
-if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) && isset($_POST['PASSWORD'])){
-    
-    // check username and email empty or not
-    if(!empty($_POST['NAME']) && !empty($_POST['EMAIL']) && !empty($_POST['USERNAME']) && !empty($_POST['PASSWORD'])){
-        
-        // Escape special characters.
-        $NAME = mysqli_real_escape_string($conn, htmlspecialchars($_POST['NAME']));
-        $EMAIL = mysqli_real_escape_string($conn, htmlspecialchars($_POST['EMAIL']));
-        $USERNAME = mysqli_real_escape_string($conn, htmlspecialchars($_POST['USERNAME']));
-        $PASSWORD = mysqli_real_escape_string($conn, htmlspecialchars($_POST['PASSWORD']));
-        
-        //CHECK EMAIL IS VALID OR NOT
-        if (filter_var($EMAIL, FILTER_VALIDATE_EMAIL)) {
-            
-            // CHECK IF EMAIL IS ALREADY INSERTED OR NOT
-            $check_email = mysqli_query($conn, "SELECT `EMAIL` FROM `users` WHERE EMAIL = '$EMAIL'");
-            
-            if(mysqli_num_rows($check_email) > 0){    
-                
-                echo "<h3>This Email Address is already registered. Please Try another.</h3>";
-                
-            }else{
-                
-                // INSERT USERS DATA INTO THE DATABASE
-                $insert_query = mysqli_query($conn,"INSERT INTO `users`( NAME,EMAIL,USERNAME,PASSWORD) VALUES('$NAME','$EMAIL','$USERNAME','$PASSWORD')");
-
-                //CHECK DATA INSERTED OR NOT
-                if($insert_query){
-                    echo "<script>
-                    alert('Data inserted');
-                    window.location.href = 'login.php';
-                    </script>";
-                    exit;
-                }else{
-                    echo "<h3>Opps something wrong!</h3>";
-                }
-                
-                
-            }
-            
-            
-        }else{
-            echo "Invalid email address. Please enter a valid email address";
-        }
-        
-    }else{
-        echo "<h4>Please fill all fields</h4>";
-    }
-    
-}else{
-    // set header response code
-    //http_response_code(404);
-    //echo "<h1>404 Page Not Found!</h1>";
-}
-?>
