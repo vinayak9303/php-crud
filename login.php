@@ -15,7 +15,7 @@
        <!-- INSERT DATA -->
         <div class="form">
             <h2>LOGIN</h2>
-            <form action="login2.php" method="post">
+            <form action="login.php" method="post">
                 <strong>USERNAME</strong><br>
                 <input type="text" name="USERNAME" placeholder="Enter your user name" required><br>
                 <strong>PASSWORD</strong><br>
@@ -37,11 +37,28 @@ if( isset($_POST['USERNAME']) && isset($_POST['PASSWORD'])){
         // Escape special characters.
         $USERNAME = mysqli_real_escape_string($conn, htmlspecialchars($_POST['USERNAME']));
         $PASSWORD = mysqli_real_escape_string($conn, htmlspecialchars($_POST['PASSWORD']));
-        if(mysqli_query($conn, "SELECT `USERNAME` FROM `users` WHERE USERNAME = '$USERNAME'")&& mysqli_query($conn, "SELECT 'PASSWORD' FROM `users` WHERE PASSWORD = '$PASSWORD'"))
-        {
-            echo "<h1>hi</h1>";
-        }
-    
+        $result = $conn->query("SELECT * FROM users WHERE USERNAME ='$USERNAME' AND PASSWORD='$PASSWORD'");
+
+
+
+    if (mysqli_num_rows($result)) {
+        //echo ""SELECT * FROM users WHERE USERNAME ="$USERNAME" AND 'PASSWORD'="$PASSWORD";
+        //echo "<h2>login successfull</h2>";  
+        echo "<script>
+                    alert('LOGIN SUCCESSFULL');
+                    window.location.href = 'index.php';
+                    </script>";
+                    exit;   
+    } 
+    else
+    {      
+        //echo "<h2>login unsuccessfull, please try again</h2>";     
+        echo "<script>
+                    alert('invalid username or password,please try again!');
+                    window.location.href = 'login.php';
+                    </script>";
+                    exit;   
+    }
     }
     else{
         echo "<h3>insert valid username or password<h3>";

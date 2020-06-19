@@ -64,7 +64,7 @@ if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) 
                 if($insert_query){
                     echo "<script>
                     alert('Data inserted');
-                    window.location.href = 'index.php';
+                    window.location.href = 'login.php';
                     </script>";
                     exit;
                 }else{
