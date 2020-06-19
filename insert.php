@@ -45,7 +45,10 @@
             data:  new FormData(this),
             success: function(obj) {
                 console.log(obj)
-                swal("Success", "Successfully Inserted", "success");
+                swal("Success", "Successfully Inserted", "success").then(function(){location.href="login.php";
+
+                });
+                
             },
             error: function(obj){
                 console.log(obj)
