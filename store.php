@@ -19,8 +19,8 @@ if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) 
             $check_email = mysqli_query($conn, "SELECT `EMAIL` FROM `users` WHERE EMAIL = '$EMAIL'");
             
             if(mysqli_num_rows($check_email) > 0){    
-                
-                echo "<h3>This Email Address is already registered. Please Try another.</h3>";
+                $response['status'] = "already exist";
+                echo json_decode($response);
                 
             }else{
                 
@@ -29,13 +29,11 @@ if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) 
 
                 //CHECK DATA INSERTED OR NOT
                 if($insert_query){
-                    echo "<script>
-                    alert('Data inserted');
-                    window.location.href = 'login.php';
-                    </script>";
-                    exit;
+                    $response['status'] = "success";
+                    echo json_encode($response);
                 }else{
-                    echo "<h3>Opps something wrong!</h3>";
+                    $response['status'] = "failure";
+                    echo json_encode($response);
                 }
                 
                 
@@ -43,11 +41,13 @@ if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) 
             
             
         }else{
-            echo "Invalid email address. Please enter a valid email address";
+            $response['status'] = "invalid email";
+            echo json_encode($response);
         }
         
     }else{
-        echo "<h4>Please fill all fields</h4>";
+        $response['status'] = "fields required";
+        echo json_encode($response);
     }
     
 }else{
@@ -55,6 +55,4 @@ if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) 
     //http_response_code(404);
     //echo "<h1>404 Page Not Found!</h1>";
 }
-$response['status'] = "success";
-echo $response;
 ?>

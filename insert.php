@@ -16,7 +16,7 @@
        <!-- INSERT DATA -->
         <div class="form">
             <h2>Insert Data</h2>
-            <form>
+            <form id="myForm">
                 <strong>NAME</strong><br>
                 <input type="text" name="NAME" placeholder="Enter your full name" required><br>
                 <strong>Email</strong><br>
@@ -34,16 +34,21 @@
 
 
 <script>
-    $('form').on('submit', function(e) {
+    $('#myForm').on('submit', function(e) {
         e.preventDefault()
         $.ajax({
             url: 'store.php',
             type: 'POST',
+            contentType:false,
+            cache:false,
+            processData:false,
             data:  new FormData(this),
             success: function(obj) {
-                alert('success')
+                console.log(obj)
+                swal("Success", "Successfully Inserted", "success");
             },
             error: function(obj){
+                console.log(obj)
                 alert('error')
             }
         });
