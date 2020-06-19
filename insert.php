@@ -44,11 +44,39 @@
             processData:false,
             data:  new FormData(this),
             success: function(obj) {
-                console.log(obj)
-                swal("Success", "Successfully Inserted", "success").then(function(){location.href="login.php";
-
-                });
+                console.log("Response: " + obj)
                 
+                obj = JSON.parse(obj);
+                if(obj.status=="already exist")
+                {
+              swal("failure", "email is already exist", "warning").then(function(obj) {
+   location.href = "insert.php";
+});
+                }
+                else if(obj.status=="success")
+                {
+              swal("Success", "Successfully Inserted", "success").then(function(obj) {
+   location.href = "login.php";
+});
+                }
+                else if(obj.status=="failure")
+                {
+              swal("failure", "please insert correct data", "warning").then(function(obj) {
+   location.href = "insert.php";
+});
+                }
+                else if(obj.status=="invalid email")
+                {
+              swal("failure", "please insert valid email", "warning").then(function(obj) {
+   location.href = "insert.php";
+});
+                }
+                else if(obj.status=="fields required")
+                {
+              swal("failure", "please insert correct data", "warning").then(function(obj) {
+   location.href = "insert.php";
+});
+                }
             },
             error: function(obj){
                 console.log(obj)

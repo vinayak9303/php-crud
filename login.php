@@ -36,11 +36,27 @@
             processData:false,
             data:  new FormData(this),
             success: function(obj) {
-                console.log(obj)
-                swal("Success", "Successfully login", "success").then(function(){location.href="index.php";
-
-                });
+                console.log("Response: " + obj)
                 
+                obj = JSON.parse(obj);
+                if(obj.status=="insert valid username or password ")
+                {
+              swal("failure", "please insert valid username or password", "warning").then(function(obj) {
+   location.href = "login.php";
+});
+                }
+                else if(obj.status=="success")
+                {
+              swal("Success", "Successfully LOGIN", "success").then(function(obj) {
+   location.href = "index.php";
+});
+                }
+                else if(obj.status=="failure")
+                {
+              swal("failure", "please insert correct data", "warning").then(function(obj) {
+   location.href = "login.php";
+});
+                }    
             },
             error: function(obj){
                 console.log(obj)

@@ -20,7 +20,6 @@ if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) 
             
             if(mysqli_num_rows($check_email) > 0){    
                 $response['status'] = "already exist";
-                echo json_decode($response);
                 
             }else{
                 
@@ -30,10 +29,8 @@ if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) 
                 //CHECK DATA INSERTED OR NOT
                 if($insert_query){
                     $response['status'] = "success";
-                    echo json_encode($response);
                 }else{
                     $response['status'] = "failure";
-                    echo json_encode($response);
                 }
                 
                 
@@ -42,12 +39,10 @@ if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) 
             
         }else{
             $response['status'] = "invalid email";
-            echo json_encode($response);
         }
         
     }else{
         $response['status'] = "fields required";
-        echo json_encode($response);
     }
     
 }else{
@@ -55,4 +50,5 @@ if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) 
     //http_response_code(404);
     //echo "<h1>404 Page Not Found!</h1>";
 }
+    echo json_encode($response);
 ?>
