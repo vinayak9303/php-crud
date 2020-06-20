@@ -1,7 +1,7 @@
 <?php
 require 'db_connection.php';
-if(isset($_GET['id']) && is_numeric($_GET['id']))
-{
+//if( isset($_GET['id']) && is_numeric($_GET['id']))
+//{
     
     $userid = $_GET['id'];
     if( isset($_POST['PASSWORD']))
@@ -11,9 +11,9 @@ if(isset($_GET['id']) && is_numeric($_GET['id']))
         {
             $PASSWORD = mysqli_real_escape_string($conn, htmlspecialchars($_POST['PASSWORD']));
             $result = $conn->query("SELECT * FROM 'users' WHERE id ='$userid' AND PASSWORD='$PASSWORD'");
-            if (mysqli_num_rows($result)) 
+            if (mysqli_num_rows($result)>0) 
             {
-    $delete_user = mysqli_query($conn,"DELETE FROM `users` WHERE id='$userid'");
+    $delete_user = mysqli_query($conn,"DELETE  FROM `users` WHERE id='$userid'");
     
                 if($delete_user)
                 {
@@ -28,7 +28,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id']))
 
         }
     }
-}
+//}
 else
 {
     // set header response code

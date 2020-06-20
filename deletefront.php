@@ -45,16 +45,16 @@
                 else if(obj.status=="failure")
                 {
               swal("failure", "please insert correct password", "warning").then(function(obj) {
-   location.href = "delete.php";
+   location.href = "deletefront.php";
 });
                 }
                 else if(obj.status=="404 page error")
                 {
               swal("failure", "something went wrong please try again later", "warning").then(function(obj) {
-   location.href = "delete.php"; 
+   location.href = "deletefront.php"; 
 });
                 }
-                               }
+                               
             },
             error: function(obj){
                 console.log(obj)
