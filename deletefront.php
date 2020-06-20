@@ -11,25 +11,22 @@
 </head>
 
 <body>
-    <div class="container">
+<div class="container">
       
        <!-- INSERT DATA -->
         <div class="form">
-            <h2>LOGIN</h2>
-            <form id=myForm1>
-                <strong>USERNAME</strong><br>
-                <input type="text" name="USERNAME" placeholder="Enter your user name" required><br>
+            <h2>Insert Data</h2>
+            <form id="myForm2">
                 <strong>PASSWORD</strong><br>
                 <input type="password" name="PASSWORD" placeholder="Enter your password" required><br>
                 <input type="submit" value="Insert">
-            </form>
+                </form>
         </div>
-        <!-- END OF INSERT DATA SECTION -->
-        <script>
-    $('#myForm1').on('submit', function(e) {
+<script>
+    $('#myForm2').on('submit', function(e) {
         e.preventDefault()
         $.ajax({
-            url: 'store1.php',
+            url: 'delete.php?id=' + <?php echo $_GET['id']; ?>,
             type: 'POST',
             contentType:false,
             cache:false,
@@ -39,24 +36,25 @@
                 console.log("Response: " + obj)
                 
                 obj = JSON.parse(obj);
-                if(obj.status=="insert valid username or password ")
+                if(obj.status=="success")
                 {
-              swal("failure", "please insert valid username or password", "warning").then(function(obj) {
-   location.href = "login.php";
-});
-                }
-                else if(obj.status=="success")
-                {
-              swal("Success", "Successfully LOGIN", "success").then(function(obj) {
-   location.href = "index.php";
+              swal("Success", "Successfully deleted", "success").then(function(obj) {
+   location.href = "register.php";
 });
                 }
                 else if(obj.status=="failure")
                 {
-              swal("failure", "please insert correct data", "warning").then(function(obj) {
-   location.href = "login.php";
+              swal("failure", "please insert correct password", "warning").then(function(obj) {
+   location.href = "deletefront.php";
 });
-                }    
+                }
+                else if(obj.status=="404 page error")
+                {
+              swal("failure", "something went wrong please try again later", "warning").then(function(obj) {
+   location.href = "deletefront.php"; 
+});
+                }
+                               
             },
             error: function(obj){
                 console.log(obj)
@@ -66,5 +64,9 @@
     });
 </script>
 
+
+
+
     </body>
 </html>
+   
