@@ -29,6 +29,5 @@ if( isset($_POST['USERNAME']) && isset($_POST['PASSWORD'])){
                 
                 }
     }
-}
     echo json_encode($response);
 ?>
