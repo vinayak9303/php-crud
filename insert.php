@@ -44,8 +44,10 @@
             processData:false,
             data:  new FormData(this),
             success: function(obj) {
-                console.log("Response: " + obj)
-                swal("Success", "Successfully Inserted", "success");
+                obj = JSON.parse(obj);
+                if (obj.status == "already exist") {
+                    swal("Warning", "Email Already Exists", "warning");
+                }
             },
             error: function(obj){
                 console.log(obj)
