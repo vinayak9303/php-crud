@@ -10,7 +10,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id']))
         if( !empty($_POST['PASSWORD']))
         {
             $PASSWORD = mysqli_real_escape_string($conn, htmlspecialchars($_POST['PASSWORD']));
-            $result = $conn->query("SELECT  FROM 'users' WHERE id ='$userid' AND PASSWORD='$PASSWORD'");
+            $result = $conn->query("SELECT * FROM 'users' WHERE id ='$userid' AND PASSWORD='$PASSWORD'");
             if (mysqli_num_rows($result)) 
             {
     $delete_user = mysqli_query($conn,"DELETE FROM `users` WHERE id='$userid'");

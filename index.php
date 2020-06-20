@@ -19,7 +19,7 @@ function get_all_data($conn){
             <td>'.$row['USERNAME'].'</td>
             <td>
             <a href="update.php?id='.$row['id'].'">Edit</a> |
-            <a href="delete.php?id='.$row['id'].'">Delete</a>
+            <a href="deletefront.php?id='.$row['id'].'">Delete</a>
             </td>
             </tr>';
 
