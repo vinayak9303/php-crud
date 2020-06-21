@@ -18,7 +18,7 @@ function get_all_data($conn){
             <td>'.$row['EMAIL'].'</td>
             <td>'.$row['USERNAME'].'</td>
             <td>
-            <a href="update.php?id='.$row['id'].'">Edit</a> |
+            <a href="update.php?id='.$row['id'].'" class= "btn btn-default">Edit</a> |
             <button class="delete_btn" user_id="'.$row['id'].'">Delete</button>
             </td>
             </tr>';
