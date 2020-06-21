@@ -1,148 +1,73 @@
-<?php
-require 'db_connection.php';
-// function for getting data from database
-function get_all_data($conn){
-    $get_data = mysqli_query($conn,"SELECT * FROM `users`");
-    if(mysqli_num_rows($get_data) > 0){
-        echo '<table>
-              <tr>
-                <th>NAME</th>
-                <th>EMAIL</th>
-                <th>USERNAME</th>
-                <th>Action</th> 
-              </tr>';
-        while($row = mysqli_fetch_assoc($get_data)){
-           
-            echo '<tr>
-            <td>'.$row['NAME'].'</td>
-            <td>'.$row['EMAIL'].'</td>
-            <td>'.$row['USERNAME'].'</td>
-            <td>
-            <a href="update.php?id='.$row['id'].'">Edit</a> |
-            <button class="delete_btn" user_id="'.$row['id'].'">Delete</button>
-            </td>
-            </tr>';
-
-        }
-        echo '</table>';
-    }else{
-        echo "<h3>No records found. Please insert some records</h3>";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="">
 
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Application</title>
     <link rel="stylesheet" href="style.css">
-</style>
 </head>
 
 <body>
-    
-        <hr>
-        <!-- SHOW DATA -->
-        <h2>Show Data</h2>
-        <?php 
-        // calling get_all_data function
-        get_all_data($conn); 
-        ?>
-        <!-- END OF SHOW DATA SECTIONo -->
-        <form action="insert.php" method="get">
-    <button type="submit" >REGISTER</button>
-    </form>
-        <form action="login.php" method="get">
-    <button type="submit" >LOGIN</button>
-    </form>
-
-
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-           <form id=myForm2>
+    <div class="container">
+      
+       <!-- INSERT DATA -->
+        <div class="form">
+            <h2>LOGIN</h2>
+            <form id=myForm1>
+                <strong>USERNAME</strong><br>
+                <input type="text" name="USERNAME" placeholder="Enter your user name" required><br>
                 <strong>PASSWORD</strong><br>
                 <input type="password" name="PASSWORD" placeholder="Enter your password" required><br>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <input type="submit" value="Login">
             </form>
+            <form action="insert.php">
+            <strong>click here for register </strong><br>
+            <input type="submit" value="Register">
         </div>
-        <div class="modal-footer">
-         
-        </div>
-      </div>
-      
-    </div>
-  </div>
-
-<script>
-    $(".delete_btn").on("click", function(e) {
-        var uid = $(this).attr("user_id");
-        $("#myModal").modal("show");
-        $("#myForm2").on("submit", function(ev) {
-        ev.preventDefault();
+        <!-- END OF INSERT DATA SECTION -->
+        <script>
+    $('#myForm1').on('submit', function(e) {
+        e.preventDefault()
         $.ajax({
-            url: 'delete.php?id=' + uid,
+            url: 'store1.php',
             type: 'POST',
             contentType:false,
             cache:false,
             processData:false,
             data:  new FormData(this),
             success: function(obj) {
+                console.log("Response: " + obj)
+                
                 obj = JSON.parse(obj);
-                if(obj.status=="success")
+                if(obj.status=="insert valid username or password ")
                 {
-              swal("Success", "Successfully deleted", "success").then(function(obj) {
+              swal("failure", "please insert valid username or password", "warning").then(function(obj) {
    location.href = "index.php";
+});
+                }
+                else if(obj.status=="success")
+                {
+              swal("Success", "Successfully LOGIN", "success").then(function(obj) {
+   location.href = "show.php";
 });
                 }
                 else if(obj.status=="failure")
                 {
-              swal("failure", "please insert correct password", "warning").then(function(obj) {
+              swal("failure", "please insert correct data", "warning").then(function(obj) {
    location.href = "index.php";
 });
-                }
-                else if(obj.status=="404 page error")
-                {
-              swal("failure", "something went wrong please try again later", "warning").then(function(obj) {
-   location.href = "index.php"; 
-});
-                }
-                               
+                }    
             },
             error: function(obj){
                 console.log(obj)
                 alert('error')
             }
         });
-
-        });
     });
 </script>
 
-
-
-
-</body>
-
+    </body>
 </html>
