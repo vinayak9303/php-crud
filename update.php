@@ -28,6 +28,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
         <div class="form">
             <h2>Update Data</h2>
             <form id=myForm3>
+                <input type="hidden" name="uId" value="<?php echo $row['id'] ?>">
                 <strong>NAME</strong><br>
                 <input type="text" autocomplete="off" name="NAME" placeholder="Enter your full name" value="<?php echo $row['NAME'];?>" required><br>
                 <strong>EMAIL</strong><br>
@@ -43,19 +44,18 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
     </div>
     <script>
     $('#myForm3').on('submit', function(evv) {
-        var uid = $(this).attr($id);
         evv.preventDefault();
         $.ajax({
-            url: 'update1.php?id='+uid,
+            url: 'update1.php',
             type: 'POST',
             contentType:false,
             cache:false,
             processData:false,
-            data:  new FormData(this),
+            data: new FormData(this),
             success: function(obj) {
                 console.log("Response: " + obj)
                 
-                obj = JSON.parse(obj);
+                // obj = JSON.parse(obj);
                 if(obj.status=="insert valid username or password ")
                 {
               swal("failure", "please insert valid username or password", "warning").then(function(obj) {
