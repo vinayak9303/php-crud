@@ -3,7 +3,6 @@ require 'db_connection.php';
 
 if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) && isset($_POST['PASSWORD']) && isset($_POST['uId'])){
     $user_id = $_POST['uId'];
-    // $response['status'] = "Aaya";
 
     // check username and email empty or not
     if(!empty($_POST['NAME']) && !empty($_POST['EMAIL']) && !empty($_POST['USERNAME']) && !empty($_POST['PASSWORD'])){
@@ -41,8 +40,5 @@ if(isset($_POST['NAME']) && isset($_POST['EMAIL']) && isset($_POST['USERNAME']) 
        $response['status'] = "please fill all fields";
     }   
 }
-
-    echo json_encode($response);
-    // $rs = ["state" => "hii"];
     echo json_encode($response);
 ?>
