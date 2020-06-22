@@ -27,7 +27,6 @@ require 'db_connection.php';
                 //CHECK DATA UPDATED OR NOT
                 if($update_query){
                     $response['status'] = "success";
-                    exit;
                 }else{
                     $response['status'] = "failure";
                 }
@@ -36,9 +35,9 @@ require 'db_connection.php';
             $response['status'] = "invalid email";
         }
         
-    }else{
-       $response['status'] = "please fill all fields";
-    }   
+    }//else{
+      // $response['status'] = "please fill all fields";
+    //}   
 //}
 echo json_encode($response);
 ?>

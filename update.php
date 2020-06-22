@@ -49,12 +49,11 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
         $.ajax({
             url: 'update1.php',
             type: 'POST',
-            //contentType:false,
+            contentType:false,
             cache:false,
             processData:false,
             data: new FormData(this),
             success: function(obj) {
-                alert('hi')
                 console.log("Response: " + obj)
                 obj = JSON.parse(obj);
                 if(obj.status=="insert valid username or password ")
