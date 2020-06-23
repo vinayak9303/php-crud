@@ -60,6 +60,10 @@ function get_all_data($conn){
         get_all_data($conn); 
         ?>
         <!-- END OF SHOW DATA SECTIONo -->
+        <form action="dcookies.php">
+        <input type="submit" value="logout">
+        </form>
+
         
 
 
@@ -133,7 +137,6 @@ function get_all_data($conn){
         });
     });
 </script>
-
 
 
 

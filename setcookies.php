@@ -1,17 +1,24 @@
 
 <?php
 //setting cookies
-  setcookie('our_cookie', 'current', time() + 3600, '/');
+if(count($_COOKIE) != 0)
+{
+ setcookie('our_cookie', 'current', time()-1, '/');
+}
 ?>
 <html>
   <body>
     <?php
+    if(count($_COOKIE) != 0)
+{
       if(count($_COOKIE) > 0) {
-          location.href="show.php";
         //echo "Enabled.";
+        $_response['status']="true";
       } else { 
         //echo "Disabled.";
-      }  	
+      } 
+    }
+      echo json_encode($response); 	
     ?>
   </body>
 </html> 

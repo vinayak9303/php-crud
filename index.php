@@ -1,5 +1,12 @@
-<?
+<?php
 require 'setcookies.php';
+?>
+<?php
+if($_response['status']=="true")
+{
+    header("Location:show.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="">

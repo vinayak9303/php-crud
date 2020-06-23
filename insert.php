@@ -56,7 +56,7 @@
                 else if(obj.status=="success")
                 {
               swal("Success", "Successfully Inserted", "success").then(function(obj) {
-   location.href = "login.php";
+   location.href = "index.php";
 });
                 }
                 else if(obj.status=="failure")
