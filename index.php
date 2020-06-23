@@ -1,3 +1,6 @@
+<?
+require 'setcookies.php';
+?>
 <!DOCTYPE html>
 <html lang="">
 
