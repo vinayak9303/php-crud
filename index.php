@@ -1,11 +1,11 @@
 <?php
-require 'setcookies.php';
+//require 'setcookies.php';
 ?>
 <?php
-if($_response['status']=="true")
+//if($_response['status']=="true")
 {
-    header("Location:show.php");
-    exit;
+   // header("Location:show.php");
+    //exit;
 }
 ?>
 <!DOCTYPE html>

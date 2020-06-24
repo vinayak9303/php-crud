@@ -29,6 +29,9 @@
             </form>
         </div>
         <!-- END OF INSERT DATA SECTION -->
+        <form action="index.php">
+            <strong>click here for login </strong><br>
+            <input type="submit" value="Login">
 
 
 
